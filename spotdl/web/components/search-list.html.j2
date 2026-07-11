@@ -58,8 +58,8 @@
                     <iconify-icon icon="clarity:check-line" style="font-size: 24px"></iconify-icon>
                 </button>
                 {% else %}
-                <button id="download-{{song.url}}" class="btn btn-primary btn-square"
-                    data-on-click="$song_url = '{{song.url}}'; @post('/client/download/'); ">
+                <button id="download-{{song.song_id}}" class="btn btn-primary btn-square"
+                    data-on-click="$song_id = '{{song.song_id}}'; $album_id = '{{song.album_id}}'; @post('/client/download/'); ">
                     {# download($client_id, '{{song.url}}') #}
                     <!-- download -->
                     <iconify-icon icon="clarity:floppy-line" style="font-size: 24px"></iconify-icon>

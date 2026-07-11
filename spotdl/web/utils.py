@@ -16,7 +16,8 @@ class Signals:
     client_id: str = ""
     search_term: str = ""
     downloader_settings: Optional["DownloaderOptions"] = None
-    song_url: str = ""
+    song_id: str = ""
+    album_id: str = ""
 
 
 def handle_signals(datastar_signals: dict | None) -> Signals:
@@ -33,5 +34,6 @@ def handle_signals(datastar_signals: dict | None) -> Signals:
     signals.client_id = datastar_signals.get("client_id", "")
     signals.search_term = datastar_signals.get("search_term", "")
     signals.downloader_settings = datastar_signals.get("downloader_settings", {})
-    signals.song_url = datastar_signals.get("song_url", "")
+    signals.song_id = datastar_signals.get("song_id", "")
+    signals.album_id = datastar_signals.get("album_id", "")
     return signals
