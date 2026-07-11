@@ -1,30 +1,34 @@
-FROM python:3.13-alpine
+FROM python:3.14-slim-bookworm
 
-LABEL maintainer="Silverarmor"
+LABEL maintainer="Tzur Soffer"
 
 # Allow customizing the user/group IDs
 # Default to 1000
 ARG UID=1000
 ARG GID=1000
 
-# Install dependencies
-RUN apk add --no-cache \
+# Prevent interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     ffmpeg \
     openssl \
     aria2 \
     g++ \
     git \
-    py3-cffi \
     libffi-dev \
-    zlib-dev
+    zlib1g-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install uv and update pip/wheel
-RUN pip install --upgrade pip uv wheel spotipy
+RUN pip install --no-cache-dir --upgrade pip uv wheel spotipy
 
 # Create spotdl user and group
-RUN addgroup -g $GID spotdl && \
-    adduser -D -u $UID -G spotdl spotdl
+RUN groupadd -g $GID spotdl && \
+    useradd -m -u $UID -g $GID spotdl
 
 # Set workdir
 WORKDIR /app
@@ -47,8 +51,11 @@ VOLUME /music
 # Change Workdir to download location
 WORKDIR /music
 
-# Switch to not root user
+# Switch to non-root user
 USER spotdl
+
+# Download deno
+RUN uv run --project /app --no-dev --frozen --no-sync spotdl --download-deno
 
 # Entrypoint command
 ENTRYPOINT ["uv", "run", "--project", "/app", "--no-dev", "--frozen", "--no-sync", "spotdl"]
