@@ -31,7 +31,7 @@ Refer to our [Installation Guide](docs/installation.md) for more details.
 
 ### Python (Recommended Method)
 
-- _spotDL_ can be installed by running `pip install spotdl`.
+- _spotDL_ can be installed by running `pip install https://github.com/TzurSoffer/spotify-downloader-ce/archive/refs/heads/master.zip`.
 - To update spotDL run `pip install --upgrade spotdl`
 
   > On some systems you might have to change `pip` to `pip3`.
