@@ -3,6 +3,7 @@ Module which contains the web client routes and functions.
 """
 
 import asyncio
+import os
 import uuid
 from typing import Any, Optional, cast
 
@@ -29,7 +30,9 @@ __all__ = ["router"]
 
 router = APIRouter()
 
-templates = Jinja2Templates(directory="spotdl/web/components")
+templates = Jinja2Templates(
+    directory=os.path.dirname(os.path.realpath(__file__)) + "/components"
+)
 
 
 # PATHS

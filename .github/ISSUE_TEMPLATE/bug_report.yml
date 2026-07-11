@@ -33,6 +33,7 @@ body:
       - 3.11 (CPython)
       - 3.12 (CPython)
       - 3.13 (CPython)
+      - 3.14 (CPython)
       - Other
   validations:
     required: true
@@ -46,6 +47,7 @@ body:
       - GitHub
       - Termux Installation Script (spotDL provided)
       - Arch User Repository (Unofficial)
+      - Docker Image
       - Other
   validations:
     required: true
