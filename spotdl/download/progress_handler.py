@@ -197,7 +197,7 @@ class ProgressHandler:
 
             self.rich_progress_bar = Progress(
                 SizedTextColumn(
-                    "[white]{task.description}",
+                    "{task.description}",
                     overflow="ellipsis",
                     width=int(console.width / 3),
                 ),
@@ -341,7 +341,7 @@ class SongTracker:
         if not self.parent.simple_tui:
             self.task_id = self.parent.rich_progress_bar.add_task(
                 description=escape(self.song_name),
-                message="Processing",
+                message="Getting lyrics",
                 total=100,
                 completed=self.progress,
                 start=False,
@@ -430,16 +430,21 @@ class SongTracker:
         else:
             logger.error("%s: %s", traceback.__class__.__name__, traceback)
 
-    def notify_download_complete(self, status="Converting") -> None:
+    def notify_searching(self) -> None:
         """
-        Notifies the progress handler that the song has been downloaded.
-
-        ### Arguments
-        - status: The status to display.
+        Notifies the progress handler that the song is being searched for on the audio provider(s).
         """
 
-        self.progress = 50
-        self.update(status)
+        self.progress = 25
+        self.update("Searching for song")
+
+    def notify_getting_meta(self) -> None:
+        """
+        Notifies the progress handler that the song's download metadata is being downloaded.
+        """
+
+        self.progress = 40
+        self.update("Getting audio meta")
 
     def notify_conversion_complete(self, status="Embedding metadata") -> None:
         """
@@ -483,9 +488,9 @@ class SongTracker:
         """
 
         if self.parent.simple_tui and not self.parent.web_ui:
-            self.progress = 50
+            self.progress = 70
         else:
-            self.progress = 50 + int(progress * 0.45)
+            self.progress = 70 + int(progress * 0.25)
 
         self.update("Converting")
 
@@ -504,9 +509,9 @@ class SongTracker:
 
             downloaded_bytes = data.get("downloaded_bytes")
             if self.parent.simple_tui and not self.parent.web_ui:
-                self.progress = 50
+                self.progress = 70
             elif file_bytes and downloaded_bytes:
-                self.progress = downloaded_bytes / file_bytes * 50
+                self.progress = 40 + downloaded_bytes / file_bytes * 30
 
             self.update("Downloading")
 

@@ -675,9 +675,12 @@ class Downloader:
             )
 
             if song.download_url is None:
+                display_progress_tracker.notify_searching()
                 download_url = self.search(song)
             else:
                 download_url = song.download_url
+
+            display_progress_tracker.notify_getting_meta()
 
             logger.debug("Downloading %s using %s", song.display_name, download_url)
             download_info = audio_downloader.get_download_metadata(
@@ -698,8 +701,6 @@ class Downloader:
             temp_file = Path(
                 temp_folder / f"{download_info['id']}.{download_info['ext']}"
             )
-
-            display_progress_tracker.notify_download_complete()
 
             # Copy the downloaded file to the output file
             # if the temp file and output file have the same extension
