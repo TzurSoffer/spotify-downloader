@@ -3091,34 +3091,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#spotdl.download.progress_handler.SongTracker.notify_download_complete" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        notify_download_complete
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="notify_download_complete">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#spotdl.download.progress_handler.SongTracker.notify_download_complete--arguments" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Arguments
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#spotdl.download.progress_handler.SongTracker.notify_download_skip" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3171,6 +3143,28 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spotdl.download.progress_handler.SongTracker.notify_getting_meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        notify_getting_meta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spotdl.download.progress_handler.SongTracker.notify_searching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        notify_searching
+      
+    </span>
+  </a>
   
 </li>
         
@@ -3493,7 +3487,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">rich_progress_bar</span> <span class="o">=</span> <span class="n">Progress</span><span class="p">(</span>
             <span class="n">SizedTextColumn</span><span class="p">(</span>
-                <span class="s2">&quot;[white]</span><span class="si">{task.description}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;</span><span class="si">{task.description}</span><span class="s2">&quot;</span><span class="p">,</span>
                 <span class="n">overflow</span><span class="o">=</span><span class="s2">&quot;ellipsis&quot;</span><span class="p">,</span>
                 <span class="n">width</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">console</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">3</span><span class="p">),</span>
             <span class="p">),</span>
@@ -4337,7 +4331,7 @@ Similar to Rich Progress but without any TUI elements.</p>
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">simple_tui</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">task_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">rich_progress_bar</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span>
             <span class="n">description</span><span class="o">=</span><span class="n">escape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">song_name</span><span class="p">),</span>
-            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Processing&quot;</span><span class="p">,</span>
+            <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Getting lyrics&quot;</span><span class="p">,</span>
             <span class="n">total</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
             <span class="n">completed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">progress</span><span class="p">,</span>
             <span class="n">start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -4377,12 +4371,7 @@ Similar to Rich Progress but without any TUI elements.</p>
 
             <details class="quote">
               <summary>Source code in <code>spotdl/download/progress_handler.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">477</span>
-<span class="normal">478</span>
-<span class="normal">479</span>
-<span class="normal">480</span>
-<span class="normal">481</span>
-<span class="normal">482</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">482</span>
 <span class="normal">483</span>
 <span class="normal">484</span>
 <span class="normal">485</span>
@@ -4390,7 +4379,12 @@ Similar to Rich Progress but without any TUI elements.</p>
 <span class="normal">487</span>
 <span class="normal">488</span>
 <span class="normal">489</span>
-<span class="normal">490</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">ffmpeg_progress_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">progress</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">ffmpeg_progress_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">progress</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Updates the progress.</span>
 
@@ -4399,9 +4393,9 @@ Similar to Rich Progress but without any TUI elements.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">simple_tui</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">web_ui</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">50</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">70</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">progress</span> <span class="o">*</span> <span class="mf">0.45</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">70</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">progress</span> <span class="o">*</span> <span class="mf">0.25</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;Converting&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -4429,16 +4423,16 @@ Similar to Rich Progress but without any TUI elements.</p>
 
             <details class="quote">
               <summary>Source code in <code>spotdl/download/progress_handler.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">455</span>
-<span class="normal">456</span>
-<span class="normal">457</span>
-<span class="normal">458</span>
-<span class="normal">459</span>
-<span class="normal">460</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">460</span>
 <span class="normal">461</span>
 <span class="normal">462</span>
 <span class="normal">463</span>
-<span class="normal">464</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">notify_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">464</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span>
+<span class="normal">468</span>
+<span class="normal">469</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">notify_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Notifies the progress handler that the song has been downloaded and converted.</span>
 
@@ -4473,16 +4467,16 @@ Similar to Rich Progress but without any TUI elements.</p>
 
             <details class="quote">
               <summary>Source code in <code>spotdl/download/progress_handler.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">444</span>
-<span class="normal">445</span>
-<span class="normal">446</span>
-<span class="normal">447</span>
-<span class="normal">448</span>
-<span class="normal">449</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">449</span>
 <span class="normal">450</span>
 <span class="normal">451</span>
 <span class="normal">452</span>
-<span class="normal">453</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">notify_conversion_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;Embedding metadata&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">453</span>
+<span class="normal">454</span>
+<span class="normal">455</span>
+<span class="normal">456</span>
+<span class="normal">457</span>
+<span class="normal">458</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">notify_conversion_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;Embedding metadata&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Notifies the progress handler that the song has been converted.</span>
 
@@ -4491,50 +4485,6 @@ Similar to Rich Progress but without any TUI elements.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">95</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="spotdl.download.progress_handler.SongTracker.notify_download_complete" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">notify_download_complete</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;Converting&#39;</span><span class="p">)</span></code>
-
-<a href="#spotdl.download.progress_handler.SongTracker.notify_download_complete" class="headerlink" title="Permanent link">¤</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Notifies the progress handler that the song has been downloaded.</p>
-<h6 id="spotdl.download.progress_handler.SongTracker.notify_download_complete--arguments">Arguments<a class="headerlink" href="#spotdl.download.progress_handler.SongTracker.notify_download_complete--arguments" title="Permanent link">¤</a></h6>
-<ul>
-<li>status: The status to display.</li>
-</ul>
-
-            <details class="quote">
-              <summary>Source code in <code>spotdl/download/progress_handler.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">433</span>
-<span class="normal">434</span>
-<span class="normal">435</span>
-<span class="normal">436</span>
-<span class="normal">437</span>
-<span class="normal">438</span>
-<span class="normal">439</span>
-<span class="normal">440</span>
-<span class="normal">441</span>
-<span class="normal">442</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">notify_download_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;Converting&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Notifies the progress handler that the song has been downloaded.</span>
-
-<span class="sd">    ### Arguments</span>
-<span class="sd">    - status: The status to display.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">50</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -4561,16 +4511,16 @@ Similar to Rich Progress but without any TUI elements.</p>
 
             <details class="quote">
               <summary>Source code in <code>spotdl/download/progress_handler.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">466</span>
-<span class="normal">467</span>
-<span class="normal">468</span>
-<span class="normal">469</span>
-<span class="normal">470</span>
-<span class="normal">471</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">471</span>
 <span class="normal">472</span>
 <span class="normal">473</span>
 <span class="normal">474</span>
-<span class="normal">475</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">notify_download_skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;Skipped&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span>
+<span class="normal">480</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">notify_download_skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="s2">&quot;Skipped&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Notifies the progress handler that the song has been skipped.</span>
 
@@ -4655,6 +4605,74 @@ Similar to Rich Progress but without any TUI elements.</p>
 <div class="doc doc-object doc-function">
 
 
+<h3 id="spotdl.download.progress_handler.SongTracker.notify_getting_meta" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">notify_getting_meta</span><span class="p">()</span></code>
+
+<a href="#spotdl.download.progress_handler.SongTracker.notify_getting_meta" class="headerlink" title="Permanent link">¤</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Notifies the progress handler that the song's download metadata is being downloaded.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>spotdl/download/progress_handler.py</code></summary>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">441</span>
+<span class="normal">442</span>
+<span class="normal">443</span>
+<span class="normal">444</span>
+<span class="normal">445</span>
+<span class="normal">446</span>
+<span class="normal">447</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">notify_getting_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Notifies the progress handler that the song&#39;s download metadata is being downloaded.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">40</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;Getting audio meta&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="spotdl.download.progress_handler.SongTracker.notify_searching" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">notify_searching</span><span class="p">()</span></code>
+
+<a href="#spotdl.download.progress_handler.SongTracker.notify_searching" class="headerlink" title="Permanent link">¤</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Notifies the progress handler that the song is being searched for on the audio provider(s).</p>
+
+            <details class="quote">
+              <summary>Source code in <code>spotdl/download/progress_handler.py</code></summary>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span>
+<span class="normal">439</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">notify_searching</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Notifies the progress handler that the song is being searched for on the audio provider(s).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">25</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;Searching for song&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h3 id="spotdl.download.progress_handler.SongTracker.set_path" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">set_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></code>
 
@@ -4671,16 +4689,16 @@ Similar to Rich Progress but without any TUI elements.</p>
 
             <details class="quote">
               <summary>Source code in <code>spotdl/download/progress_handler.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">513</span>
-<span class="normal">514</span>
-<span class="normal">515</span>
-<span class="normal">516</span>
-<span class="normal">517</span>
-<span class="normal">518</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">518</span>
 <span class="normal">519</span>
 <span class="normal">520</span>
 <span class="normal">521</span>
-<span class="normal">522</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sets the path of the song.</span>
 
@@ -4859,12 +4877,7 @@ Similar to Rich Progress but without any TUI elements.</p>
 
             <details class="quote">
               <summary>Source code in <code>spotdl/download/progress_handler.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">492</span>
-<span class="normal">493</span>
-<span class="normal">494</span>
-<span class="normal">495</span>
-<span class="normal">496</span>
-<span class="normal">497</span>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">497</span>
 <span class="normal">498</span>
 <span class="normal">499</span>
 <span class="normal">500</span>
@@ -4878,7 +4891,12 @@ Similar to Rich Progress but without any TUI elements.</p>
 <span class="normal">508</span>
 <span class="normal">509</span>
 <span class="normal">510</span>
-<span class="normal">511</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">yt_dlp_progress_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">511</span>
+<span class="normal">512</span>
+<span class="normal">513</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">yt_dlp_progress_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Updates the progress.</span>
 
@@ -4893,9 +4911,9 @@ Similar to Rich Progress but without any TUI elements.</p>
 
         <span class="n">downloaded_bytes</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;downloaded_bytes&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">simple_tui</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">web_ui</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">50</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">70</span>
         <span class="k">elif</span> <span class="n">file_bytes</span> <span class="ow">and</span> <span class="n">downloaded_bytes</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="n">downloaded_bytes</span> <span class="o">/</span> <span class="n">file_bytes</span> <span class="o">*</span> <span class="mi">50</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="mi">40</span> <span class="o">+</span> <span class="n">downloaded_bytes</span> <span class="o">/</span> <span class="n">file_bytes</span> <span class="o">*</span> <span class="mi">30</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;Downloading&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>

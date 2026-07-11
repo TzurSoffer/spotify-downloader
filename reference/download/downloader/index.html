@@ -4267,7 +4267,8 @@ It handles the downloading/moving songs, multithreading, metadata embedding etc.
 <span class="normal">866</span>
 <span class="normal">867</span>
 <span class="normal">868</span>
-<span class="normal">869</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">search_and_download</span><span class="p">(</span>  <span class="c1"># pylint: disable=R0911</span>
+<span class="normal">869</span>
+<span class="normal">870</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">search_and_download</span><span class="p">(</span>  <span class="c1"># pylint: disable=R0911</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">song</span><span class="p">:</span> <span class="n">Song</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Song</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -4520,9 +4521,12 @@ It handles the downloading/moving songs, multithreading, metadata embedding etc.
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">song</span><span class="o">.</span><span class="n">download_url</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">display_progress_tracker</span><span class="o">.</span><span class="n">notify_searching</span><span class="p">()</span>
             <span class="n">download_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">song</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">download_url</span> <span class="o">=</span> <span class="n">song</span><span class="o">.</span><span class="n">download_url</span>
+
+        <span class="n">display_progress_tracker</span><span class="o">.</span><span class="n">notify_getting_meta</span><span class="p">()</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Downloading </span><span class="si">%s</span><span class="s2"> using </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">song</span><span class="o">.</span><span class="n">display_name</span><span class="p">,</span> <span class="n">download_url</span><span class="p">)</span>
         <span class="n">download_info</span> <span class="o">=</span> <span class="n">audio_downloader</span><span class="o">.</span><span class="n">get_download_metadata</span><span class="p">(</span>
@@ -4543,8 +4547,6 @@ It handles the downloading/moving songs, multithreading, metadata embedding etc.
         <span class="n">temp_file</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span>
             <span class="n">temp_folder</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">download_info</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">download_info</span><span class="p">[</span><span class="s1">&#39;ext&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
-
-        <span class="n">display_progress_tracker</span><span class="o">.</span><span class="n">notify_download_complete</span><span class="p">()</span>
 
         <span class="c1"># Copy the downloaded file to the output file</span>
         <span class="c1"># if the temp file and output file have the same extension</span>
