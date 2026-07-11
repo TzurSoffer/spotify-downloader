@@ -170,7 +170,7 @@ class BandCamp(AudioProvider):
 
     def get_results(self, search_term: str, *_args, **_kwargs) -> List[Result]:
         """
-        Get results from slider.kz
+        Get results from BandCamp
 
         ### Arguments
         - search_term: The search term to search for.
@@ -178,7 +178,7 @@ class BandCamp(AudioProvider):
         - kwargs: Unused.
 
         ### Returns
-        - A list of slider.kz results if found, None otherwise.
+        - A list of BandCamp results if found, None otherwise.
         """
 
         try:

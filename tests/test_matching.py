@@ -2,7 +2,9 @@ import pytest
 
 from spotdl.providers.audio.base import AudioProviderError
 from spotdl.providers.audio.ytmusic import YouTubeMusic
+from spotdl.types.result import Result
 from spotdl.types.song import Song
+from spotdl.utils.matching import calc_main_artist_match
 from spotdl.utils.spotify import SpotifyClient
 from tests.conftest import new_initialize
 
@@ -429,3 +431,93 @@ def test_ytmusic_matching(monkeypatch, query, expected, capsys):
 
     except AudioProviderError:
         pytest.skip("YouTube Music search failed")
+
+
+SONG_DICT = {
+    "name": "流転の果て",
+    "artists": ["tokiwa"],
+    "artist": "tokiwa",
+    "album_id": "test",
+    "album_name": "勿忘",
+    "album_artist": "tokiwa",
+    "album_type": "album",
+    "genres": [],
+    "disc_number": 1,
+    "disc_count": 1,
+    "duration": 222,
+    "year": 2023,
+    "date": "2023-01-01",
+    "track_number": 1,
+    "tracks_count": 1,
+    "isrc": "",
+    "song_id": "7yfMsNxODzSIysdZ47JrlG",
+    "cover_url": "https://example.com/cover.jpg",
+    "explicit": False,
+    "publisher": "test",
+    "url": "https://open.spotify.com/track/7yfMsNxODzSIysdZ47JrlG",
+    "copyright_text": "",
+}
+
+
+def test_calc_main_artist_match_with_artists():
+    song = Song.from_dict(SONG_DICT)
+    result = Result(
+        source="soundcloud",
+        url="https://soundcloud.com/tokiwa_anka/pnog8medav1f",
+        verified=False,
+        name="流転の果て",
+        duration=222041,
+        author="tokiwa",
+        artists=("tokiwa",),
+        result_id="941283319",
+    )
+
+    assert calc_main_artist_match(song, result) == 100.0
+
+
+def test_calc_main_artist_match_falls_back_to_author():
+    song = Song.from_dict(SONG_DICT)
+    result = Result(
+        source="soundcloud",
+        url="https://soundcloud.com/tokiwa_anka/pnog8medav1f",
+        verified=False,
+        name="流転の果て",
+        duration=222041,
+        author="tokiwa",
+        result_id="941283319",
+    )
+
+    assert result.artists is None
+    assert calc_main_artist_match(song, result) == 100.0
+
+
+def test_calc_main_artist_match_no_artists_no_author():
+    song = Song.from_dict(SONG_DICT)
+    result = Result(
+        source="soundcloud",
+        url="https://soundcloud.com/unknown/test",
+        verified=False,
+        name="流転の果て",
+        duration=222041,
+        author="",
+        result_id="000",
+    )
+
+    assert result.artists is None
+    assert calc_main_artist_match(song, result) == 0.0
+
+
+def test_calc_main_artist_match_author_fuzzy():
+    song = Song.from_dict({**SONG_DICT, "artists": ["Carly Rae Jepsen"], "artist": "Carly Rae Jepsen"})
+    result = Result(
+        source="youtube",
+        url="https://www.youtube.com/watch?v=abc",
+        verified=False,
+        name="I Really Like You",
+        duration=200,
+        author="Carly Rae Jepsen - Topic",
+        result_id="abc",
+    )
+
+    assert result.artists is None
+    assert calc_main_artist_match(song, result) > 70.0

@@ -2702,15 +2702,15 @@ wheels = [
 
 [[package]]
 name = "spotipyfree"
-version = "1.3.1"
+version = "1.7.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pymongo", marker = "platform_python_implementation == 'CPython'" },
     { name = "spotapi", marker = "platform_python_implementation == 'CPython'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/23/82/7e37fd039aba2023b09bae002da12ed7d2a1f43b95c55fac8663e5017165/spotipyfree-1.3.1.tar.gz", hash = "sha256:315bf951dae6b91cc0c40acb1cd8738214ea0c59a4fb5a7bb2a8e1204b0e003b", size = 10474, upload-time = "2026-05-14T05:51:05.633Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/29/a0/c525c74f8225a51ee4becff99c1d43f446a69da76827c892015d7ce57c00/spotipyfree-1.7.2.tar.gz", hash = "sha256:03a535cdb50392b1478a2dfe44ed8c8a9b7ea63c274f352b7f8e5552a861d29d", size = 13410, upload-time = "2026-05-25T18:44:17.132Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f5/96/6689970ebc78986693eef1d144cd1a1eb9bd3b87edb3acd8f2f8f21501b1/spotipyfree-1.3.1-py3-none-any.whl", hash = "sha256:b021e73e5bb9ebc17ee0cf305bcec1a38f2a8e2568d39029ea0797112c3cc6c8", size = 10738, upload-time = "2026-05-14T05:51:04.219Z" },
+    { url = "https://files.pythonhosted.org/packages/b9/3a/09783b554145d1b977f5ce806baaf9bad0fbd10c0e6e1ea13f735658c516/spotipyfree-1.7.2-py3-none-any.whl", hash = "sha256:0b538bdb0bbe127a67f521d9be35f4f4fd4bb0700e309b4e6d9ae21034812062", size = 14396, upload-time = "2026-05-25T18:44:15.265Z" },
 ]
 
 [[package]]
